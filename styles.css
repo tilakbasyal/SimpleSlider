@@ -1,0 +1,14 @@
+img {
+	margin-left: 400px;
+}
+
+ul {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+
+.gap {
+	margin: 0 auto;
+	display: flex;
+}

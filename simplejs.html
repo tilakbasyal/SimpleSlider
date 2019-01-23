@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>JS Slider</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<style>
+.myProgress {
+  width: 100%;
+  height: 5px;
+  background-color: #ddd;
+  margin-bottom:10px;
+}
+
+.myBar.active {
+  width: 0%;
+  height: 5px;
+  background-color: green;
+}
+.flex{
+	display: flex;
+}
+.flex-row{
+	flex-direction: row;
+}
+.flex-1{
+	flex: 1;
+	padding: 0 5px;
+}
+
+
+</style>
+</head>
+
+<body>
+
+	<img name="slide" src="">
+
+	
+
+	<!-- <div class="full_progressbar">
+		<p>Pacakage Subscription</p>
+		<div class="myProgress">
+			<div class="myBar" id="myBar0"></div>
+		</div>
+		<div class="myProgress">
+			<div class="myBar" id="myBar1"></div>
+		</div>
+		<div class="myProgress">
+			<div class="myBar" id="myBar2"></div>
+		</div>
+		<div class="myProgress">
+			<div class="myBar" id="myBar3"></div>
+		</div>
+	</div> -->
+
+	<div class="flex flex-row">
+
+		<div class="flex-1" id="head0">
+			<div class="myProgress">
+				<div class="myBar" id="myBar0"></div>
+			</div>
+		</div>
+		<div class="flex-1" id="head1">
+			<div class="myProgress">
+				<div class="myBar" id="myBar1"></div>
+			</div>
+		</div>
+		<div class="flex-1" id="head2">
+			<div class="myProgress">
+				<div class="myBar" id="myBar2"></div>
+			</div>
+		</div>
+		<div class="flex-1" id="head3">
+			<div class="myProgress">
+				<div class="myBar" id="myBar3"></div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var i = 0;
+		var image = [];
+		var time = 4000;
+		var barNo = 0;
+
+		//image list
+
+		var image = ["pic01.jpeg", "pic02.jpeg", "pic03.jpeg", "pic04.jpeg"];
+		var heaDing = ["pic01.jpeg", "pic02.jpeg", "pic03.jpeg", "pic04.jpeg"];
+		//change image
+		function move(barNo) {
+			var elem = document.getElementById("myBar" + barNo);
+			$(".myBar").removeClass("active")
+			$("#myBar" + barNo).addClass("active")
+			var width = 0;
+			var id = setInterval(frame, 15);
+			function frame() {
+				if (width == 100) {
+					clearInterval(id);
+					width = 0;
+					elem.style.width = width + '%';
+
+					if (i == (image.length - 1)) {
+						i = 0;
+						//debugger
+					}
+					else {
+						i++;
+
+					}
+					//console.log(i)
+					changeImg();
+					//	console.log("if")
+				} else {
+					width++;
+					//width = width == 100 ? 100 : width;
+					//console.log("width:" + width)
+					elem.style.width = width + '%';
+
+					//	console.log("else \n")
+					//		console.log(";")
+
+				}
+
+			}
+			//	debugger
+
+		}
+		function changeImg() {
+			document.slide.src = image[i];
+
+			//	console.log("progress bar call")
+			move(i)
+
+			//	setTimeout("changeImg()", time);
+		}
+		var addElement=function (k) {
+			var newP = document.createElement("p"); //create new paragraph
+			//console.log("head3    :   " + k);
+
+			var newContent = document.createTextNode(heaDing[k]);  //add content to paragraph
+			newP.appendChild(newContent);   //append content to new paragraph
+			var currentP = document.getElementById("head"+k);
+		//	console.log(currentP);
+			currentP.insertBefore(newP, currentP.childNodes[0]);
+		}
+		function loadHead() {
+
+			for (var j = 0; j <= 3; j++) {
+					addElement(j);
+			}
+		}
+		function loadElem() {
+			changeImg();
+			loadHead();
+		}
+		window.onload = loadElem;
+
+
+	</script>
+
+	<script src="jquery-1.11.3.min.js"></script>
+
+
+</body>
+
+</html>
